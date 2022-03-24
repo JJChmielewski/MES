@@ -131,6 +131,17 @@ public class Element4_2D {
         }
     }
 
+    public double[] getFunctionsForPoints(double ksi, double eta){
+        double[] N = new double[4];
+
+        N[0] = 0.25*(1-ksi)*(1-eta);
+        N[1] = 0.25*(1+ksi)*(1-eta);
+        N[2] = 0.25*(1-ksi)*(1+eta);
+        N[3] = 0.25*(1+ksi)*(1+eta);
+
+        return N;
+    }
+
     @Override
     public String toString() {
 

@@ -22,9 +22,9 @@ public class Main {
         tempOS=1200;
         ro=7800;
         cp=700;
-        dt=1;
+        dt=50;
         temp0=100;
-        tend=100;
+        tend=500;
 
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("mes.csv"),"UTF-8"));
 
@@ -38,7 +38,7 @@ public class Main {
             T[i] =temp0;
         }
 
-        for(double i=dt; i<=dt;i+=dt){
+        for(double i=dt; i<=tend;i+=dt){
             StringBuffer stringBuffer = new StringBuffer();
 
             System.out.println("Iteracja: "+i);
@@ -47,7 +47,7 @@ public class Main {
 
             grid.countLocalH(k,numberOfPoints);
 
-            grid.countHbcAndP(alpha, tempOS);
+            grid.countHbcAndP(alpha, tempOS, numberOfPoints);
 
             grid.countLocalC(ro, cp, numberOfPoints);
 

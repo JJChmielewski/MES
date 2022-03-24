@@ -92,9 +92,9 @@ public class Grid {
         }
     }
 
-    public void countHbcAndP(double alpha, double tempOfSurroundings){
-        Gauss gauss = new Gauss(2);
-        double[][] N = new double[2][4];
+    public void countHbcAndP(double alpha, double tempOfSurroundings, int numberOfPoints){
+        Gauss gauss = new Gauss(numberOfPoints);
+        double[][] N = new double[numberOfPoints][4];
 
 
         for(int i=0;i<nE;i++){
@@ -106,7 +106,7 @@ public class Grid {
         for(int i=0; i<nB-1; i++){
 
             //funkcje kształtu liczone dla sciany
-            for(int p=0;p<2;p++){
+            for(int p=0;p<numberOfPoints;p++){
                 N[p][0] = 0.25*(1-gauss.points[p])*(1-(-1));
                 N[p][1] = 0.25*(1+gauss.points[p])*(1-(-1));
                 N[p][2] = 0.25*(1-gauss.points[p])*(1+(-1));
@@ -114,7 +114,7 @@ public class Grid {
             }
 
             //wzory na prezentacji
-            for(int x=0;x<2;x++){
+            for(int x=0;x<numberOfPoints;x++){
                 double det = dx/2; //x1 - x0
                 for(int y=0;y<4;y++){
                     for(int z=0;z<4;z++){
@@ -130,14 +130,14 @@ public class Grid {
         //sciana 1, prawa
         for(int i=(nB-2); i<nE; i+=nB-1){
 
-            for(int p=0;p<2;p++){
+            for(int p=0;p<numberOfPoints;p++){
                 N[p][0] = 0.25*(1-1)*(1-gauss.points[p]);
                 N[p][1] = 0.25*(1+1)*(1-gauss.points[p]);
                 N[p][2] = 0.25*(1-1)*(1+gauss.points[p]);
                 N[p][3] = 0.25*(1+1)*(1+gauss.points[p]);
             }
 
-            for(int x=0;x<2;x++){
+            for(int x=0;x<numberOfPoints;x++){
                 double det =dy/2;
                 for(int y=0;y<4;y++){
                     for(int z=0;z<4;z++){
@@ -152,14 +152,14 @@ public class Grid {
         //sciana 2, górna
         for(int i=nE-1; i>nE-nB; i--){
 
-            for(int p=0;p<2;p++){
+            for(int p=0;p<numberOfPoints;p++){
                 N[p][0] = 0.25*(1-gauss.points[p])*(1-(1));
                 N[p][1] = 0.25*(1+gauss.points[p])*(1-(1));
                 N[p][2] = 0.25*(1-gauss.points[p])*(1+(1));
                 N[p][3] = 0.25*(1+gauss.points[p])*(1+(1));
             }
 
-            for(int x=0;x<2;x++){
+            for(int x=0;x<numberOfPoints;x++){
                 double det = dx/2;
                 for(int y=0;y<4;y++){
                     for(int z=0;z<4;z++){
@@ -173,7 +173,7 @@ public class Grid {
         //sciana 3, lewa
         for(int i=nE-(nB-1); i>=0; i-=nB-1){
 
-            for(int p=0;p<2;p++){
+            for(int p=0;p<numberOfPoints;p++){
                 N[p][0] = 0.25*(1-(-1))*(1-gauss.points[p]);
                 N[p][1] = 0.25*(1+(-1))*(1-gauss.points[p]);
                 N[p][2] = 0.25*(1-(-1))*(1+gauss.points[p]);
@@ -181,7 +181,7 @@ public class Grid {
             }
 
 
-            for(int x=0;x<2;x++){
+            for(int x=0;x<numberOfPoints;x++){
                 double det = dy/2;
 
                 for(int y=0;y<4;y++){

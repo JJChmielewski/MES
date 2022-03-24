@@ -33,7 +33,7 @@ public class Element {
             element4_2D.countDerivativesXY(jakobian);
             for(int i=0;i<4;i++){
                 for(int j=0;j<4;j++){
-                    this.H[i][j] += jakobian.det * k * gauss.weights[pc%element4_2D.numberOfPoints] * ( element4_2D.dNdx[pc][i]*element4_2D.dNdx[pc][j] + element4_2D.dNdy[pc][i]*element4_2D.dNdy[pc][j]);
+                    this.H[i][j] += jakobian.det * k * gauss.weights[pc/element4_2D.numberOfPoints] * gauss.weights[pc%element4_2D.numberOfPoints] * ( element4_2D.dNdx[pc][i]*element4_2D.dNdx[pc][j] + element4_2D.dNdy[pc][i]*element4_2D.dNdy[pc][j]);
                 }
             }
         }
@@ -51,7 +51,7 @@ public class Element {
             Jakobian jakobian = new Jakobian(this,element4_2D,p);
             for(int x=0;x<4;x++){
                 for(int y=0;y<4;y++){
-                    C[x][y] += N[p][x] * N[p][y] *ro * cp * jakobian.det * gauss.weights[p%numberOfPoints];
+                    C[x][y] += N[p][x] * N[p][y] *ro * cp * jakobian.det * gauss.weights[p%numberOfPoints] * gauss.weights[p/numberOfPoints];
                 }
             }
         }
